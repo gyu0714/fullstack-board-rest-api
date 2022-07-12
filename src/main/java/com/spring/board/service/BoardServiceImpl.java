@@ -1,6 +1,8 @@
 package com.spring.board.service;
 
+import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -70,6 +72,17 @@ public class BoardServiceImpl implements BoardService {
 		
 		Function<Board, BoardDto> function = (Board -> Board.toDto(Board));
 		return new PageResponseDto<BoardDto, Board>(result, function);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<BoardResponse> findAllBoard() {
+		List<BoardResponse> boardList = boardReposiory
+		.findAll()
+		.stream()
+		.map(BoardDto.BoardResponse::new)
+		.collect(Collectors.toList());
+		return boardList;
 	}
 
 

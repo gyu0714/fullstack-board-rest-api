@@ -16,6 +16,7 @@ import javax.persistence.OrderBy;
 
 import org.springframework.data.domain.Persistable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.spring.board.dto.BoardDto;
 
 import lombok.AllArgsConstructor;
@@ -42,10 +43,12 @@ public class Board extends BaseTimeEntity implements Persistable<Long>{
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_email")
+	@JsonIgnore
 	private User user;
 	
 	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	@OrderBy("commentNo asc")
+	@JsonIgnore
 	private List<Comment> comments;
 	
 	/* 댓글 수정 */

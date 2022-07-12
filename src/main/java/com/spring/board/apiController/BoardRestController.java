@@ -1,5 +1,7 @@
 package com.spring.board.apiController;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,6 +50,12 @@ public class BoardRestController {
 		PageResponseDto<BoardDto, Board> response = boardService.getBoardList(request);
 		
 		return response;
+	}
+
+	/* LIST ALL */
+	@GetMapping("/boards")
+	public ResponseEntity<List<BoardResponse>> findAllBoard() {
+		return ResponseEntity.ok(boardService.findAllBoard());
 	}
 	
 	/* UDATE */

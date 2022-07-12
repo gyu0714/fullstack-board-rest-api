@@ -30,6 +30,7 @@ public class CommentDto {
 		public Comment toEntity() {
 			Comment comment = Comment.builder()
 					.commentNo(commnetNo)
+					.commenter(commenter)
 					.commentContent(commentContent)
 					.board(board)
 					.build();

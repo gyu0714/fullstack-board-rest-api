@@ -1,8 +1,11 @@
 package com.spring.board.service;
 
+import java.util.List;
+
 import com.spring.board.dto.BoardDto;
 import com.spring.board.dto.PageRequestDto;
 import com.spring.board.dto.PageResponseDto;
+import com.spring.board.dto.BoardDto.BoardResponse;
 import com.spring.board.entity.Board;
 
 public interface BoardService {
@@ -11,4 +14,5 @@ public interface BoardService {
 	public void updateBoard(Long boardNo, BoardDto.BoardRequest request);
 	public void deleteBoard(Long boardNo);
 	public PageResponseDto<BoardDto, Board> getBoardList(PageRequestDto request);
+	public List<BoardResponse> findAllBoard();
 }
