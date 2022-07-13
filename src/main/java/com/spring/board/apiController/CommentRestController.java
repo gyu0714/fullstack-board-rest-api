@@ -1,5 +1,7 @@
 package com.spring.board.apiController;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +38,12 @@ public class CommentRestController {
 	@GetMapping("/comment/{commentNo}")
 	public ResponseEntity<CommentResponse> findCommentByCommnetNo(@PathVariable Long commentNo) {
 		return ResponseEntity.ok(commentService.findCommentByCommentNo(commentNo));
+	}
+	
+	/* READ ALL */
+	@GetMapping("/comments/{boardNo}")
+	public ResponseEntity<List<CommentResponse>> findAllComments(@PathVariable Long boardNo){ 
+		return ResponseEntity.ok(commentService.findAllComment(boardNo));
 	}
 	
 	/* UDATE */

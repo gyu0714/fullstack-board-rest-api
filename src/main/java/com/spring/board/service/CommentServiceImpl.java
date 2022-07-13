@@ -1,5 +1,8 @@
 package com.spring.board.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -53,6 +56,19 @@ public class CommentServiceImpl implements CommentService {
 		Comment comment = commentRepository.findById(commentNo).orElseThrow(
 				() -> new ResourceNotFoundException("해당하는 댓글 없음"));
 		commentRepository.delete(comment);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<CommentResponse> findAllComment(Long boardNo) {
+		List<CommentResponse> commentList = commentRepository
+				.findAll()
+				.stream()
+				.map(CommentDto.CommentResponse::new)
+				.filter(comment -> comment.getBoardNo() == boardNo)
+				.collect(Collectors.toList());
+				
+		return commentList;
 	}
 
 }
