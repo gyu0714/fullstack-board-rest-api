@@ -17,7 +17,9 @@ import com.spring.board.dto.CommentDto.CommentResponse;
 import com.spring.board.service.CommentServiceImpl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")

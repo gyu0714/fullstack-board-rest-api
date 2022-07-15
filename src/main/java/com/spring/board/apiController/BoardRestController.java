@@ -21,7 +21,9 @@ import com.spring.board.entity.Board;
 import com.spring.board.service.BoardServiceImpl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
@@ -33,8 +35,12 @@ public class BoardRestController {
 	@PostMapping("/board/{userName}")
 	public ResponseEntity<BoardRequest> createBoard(@PathVariable String userName,
 			@RequestBody BoardRequest request) {
-		boardService.createBoard(request, userName);
-		
+		try {
+			log.info("Controller -----> CREATE BOARD");
+			boardService.createBoard(request, userName);
+		}catch(Exception e) {
+			log.error("Controller --> CREATE BOARD ERROR");
+		}
 		return ResponseEntity.ok(request);
 	}
 	
