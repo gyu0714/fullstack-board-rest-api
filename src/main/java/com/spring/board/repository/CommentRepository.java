@@ -9,6 +9,5 @@ import com.spring.board.entity.Comment;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
-	List<CommentResponse> findByBoardNo(Long boardNo);
 
 }
